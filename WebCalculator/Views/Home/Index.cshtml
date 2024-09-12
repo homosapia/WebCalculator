@@ -1,19 +1,14 @@
-﻿@model string
+﻿@model IndexModel
 @{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 
 <div>
     <form method="post" asp-action="CalculateExpression">
         <div class="form-group">
             <label>Введите выражение</label>
             <div style="display: flex;">
-                <input type="text" class="form-control" name="expression" />
+                <input type="text" class="form-control" name="Expression" value="@Model.Expression" />
                 <button class="btn btn-primary" type="submit">вычислить</button>
             </div>
         </div>
@@ -21,6 +16,6 @@
 
     <br/>
     <div>
-        <label>@Model</label>
+        <label>@Model.Resultado</label>
     </div>
 </div>
