@@ -15,7 +15,6 @@ namespace WebCalculator.Models
                 return false;
             }
 
-            // Регулярное выражение для проверки строки
             string pattern = @"^[0-9\.,+\-*/]+$";
             Regex regex = new Regex(pattern);
 

@@ -7,12 +7,10 @@ namespace WebCalculator.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IExpressionAnalysisService _expressionAnalysisService;
         private readonly IExpressionFactory _expressionFactory;
-        public HomeController(ILogger<HomeController> logger, IExpressionAnalysisService expressionAnalysisService, IExpressionFactory expressionFactory)
+        public HomeController(IExpressionAnalysisService expressionAnalysisService, IExpressionFactory expressionFactory)
         {
-            _logger = logger;
             _expressionAnalysisService = expressionAnalysisService;
             _expressionFactory = expressionFactory;
         }
@@ -42,7 +40,6 @@ namespace WebCalculator.Controllers
             catch(ArgumentException ex)
             {
                 return Response(model, ex.Message);
-
             }
             catch (Exception ex) 
             {
