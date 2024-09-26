@@ -1,5 +1,7 @@
-﻿using System.Linq.Expressions;
+﻿using Moq;
+using System.Linq.Expressions;
 using WebCalculator.Interfaces;
+using WebCalculator.Models;
 using WebCalculator.Services;
 using Xunit;
 
@@ -11,7 +13,8 @@ namespace UnitTest.Tests
         public void CheckingExpressionComponents()
         {
             // Arrange
-            IExpressionAnalysisService expressionService = new ExpressionAnalysisService();
+            IOperator ioperator = new ListOperators();
+            var expressionService = new ExpressionAnalysisService(ioperator);
             string expression = "-5+3-9*2";
             // Act
             List<string> itens = expressionService.GetComponentsExpressions(expression);
@@ -24,7 +27,8 @@ namespace UnitTest.Tests
         public void CheckingMethodConstructingSequence() 
         {
             // Arrange
-            IExpressionAnalysisService expressionService = new ExpressionAnalysisService();
+            IOperator ioperator = new ListOperators();
+            IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
             List<string> componentsExpression = new List<string>() { "-5", "+", "3", "-", "9", "*", "2" };
             // Act
             List<string> itens = expressionService.CreateSequence(componentsExpression);

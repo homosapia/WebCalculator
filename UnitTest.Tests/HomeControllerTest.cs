@@ -1,10 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using WebCalculator.Controllers;
 using WebCalculator.Factories;
 using WebCalculator.Interfaces;
@@ -20,8 +14,9 @@ namespace UnitTest.Tests
         public void TestingExpressionValidation()
         {
             // Arrange
-            IExpressionAnalysisService expressionService = new ExpressionAnalysisService();
-            IExpressionFactory factory = new ExpressionFactory();
+            IOperator ioperator = new ListOperators();
+            IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
+            IExpressionFactory factory = new ExpressionFactory(ioperator);
             HomeController homeController = new HomeController(expressionService, factory);
             IndexModel model = new IndexModel()
             {
@@ -40,8 +35,9 @@ namespace UnitTest.Tests
         public void СheckForMultipleOperators()
         {
             // Arrange
-            IExpressionAnalysisService expressionService = new ExpressionAnalysisService();
-            IExpressionFactory factory = new ExpressionFactory();
+            IOperator ioperator = new ListOperators();
+            IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
+            IExpressionFactory factory = new ExpressionFactory(ioperator);
             HomeController homeController = new HomeController(expressionService, factory);
             IndexModel model = new IndexModel()
             {
@@ -60,8 +56,9 @@ namespace UnitTest.Tests
         public void ExpressionEvaluation()
         {
             // Arrange
-            IExpressionAnalysisService expressionService = new ExpressionAnalysisService();
-            IExpressionFactory factory = new ExpressionFactory();
+            IOperator ioperator = new ListOperators();
+            IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
+            IExpressionFactory factory = new ExpressionFactory(ioperator);
             HomeController homeController = new HomeController(expressionService, factory);
             IndexModel model = new IndexModel()
             {

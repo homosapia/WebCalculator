@@ -8,6 +8,7 @@ using WebCalculator.Interfaces;
 using WebCalculator.Services;
 using Xunit.Abstractions;
 using Xunit;
+using WebCalculator.Models;
 
 namespace UnitTest.Tests
 {
@@ -18,8 +19,9 @@ namespace UnitTest.Tests
         {
             // Arrange
             string expression = "-5+3-9*2";
-            IExpressionAnalysisService expressionService = new ExpressionAnalysisService();
-            IExpressionFactory factory = new ExpressionFactory();
+            IOperator ioperator = new ListOperators();
+            IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
+            IExpressionFactory factory = new ExpressionFactory(ioperator);
             List<string> components = expressionService.GetComponentsExpressions(expression);
             List<string> sequence = expressionService.CreateSequence(components);
             // Act

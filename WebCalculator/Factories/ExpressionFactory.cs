@@ -6,6 +6,13 @@ namespace WebCalculator.Factories
 {
     public class ExpressionFactory : IExpressionFactory
     {
+        private IOperator _operator;
+        public ExpressionFactory(IOperator @operator) 
+        {
+            _operator = @operator;
+        }
+
+
         public IExpression BuildExpressionTree(List<string> postfixExpression)
         {
             var stack = new Stack<IExpression>();
@@ -23,21 +30,7 @@ namespace WebCalculator.Factories
                         var right = stack.Pop();
                         var left = stack.Pop();
 
-                        switch (token)
-                        {
-                            case "+":
-                                stack.Push(new AdditionExpression(left, right));
-                                break;
-                            case "-":
-                                stack.Push(new SubtractionExpression(left, right));
-                                break;
-                            case "*":
-                                stack.Push(new MultiplicationExpression(left, right));
-                                break;
-                            case "/":
-                                stack.Push(new DivisionExpression(left, right));
-                                break;
-                        }
+                        stack.Push(_operator.GetExpression(token, [left, right]));
                     }
                     catch
                     {

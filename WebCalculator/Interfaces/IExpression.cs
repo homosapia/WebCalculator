@@ -2,6 +2,6 @@
 {
     public interface IExpression
     {
-        double Сalculate();
+        public double Сalculate();
     }
 }
