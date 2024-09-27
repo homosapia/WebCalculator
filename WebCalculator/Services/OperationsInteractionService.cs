@@ -30,10 +30,13 @@ namespace WebCalculator.Services
 
         public IExpression GetExpression(string action, object[] arguments)
         {
+            Operation operation = ListOperations.First(x => x.OpetationType == action);
+            if (operation.IsNotActively())
+                throw new ArgumentException($"Оператор {action} выключен");
+
             try
             {
-                Type type = _operators[action];
-                object myObject = Activator.CreateInstance(type, arguments);
+                object myObject = Activator.CreateInstance(_operators[operation.OpetationType], arguments);
                 return (IExpression)myObject;
             }
             catch

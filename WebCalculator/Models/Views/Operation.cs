@@ -21,5 +21,10 @@
         {
             Сolor = status;
         }
+
+        public bool IsNotActively()
+        {
+            return Сolor != ColorOperation.cornflowerblue;
+        }
     }
 }

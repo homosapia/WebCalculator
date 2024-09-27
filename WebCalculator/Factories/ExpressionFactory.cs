@@ -32,7 +32,7 @@ namespace WebCalculator.Factories
 
                         stack.Push(_operator.GetExpression(token, [left, right]));
                     }
-                    catch
+                    catch(InvalidOperationException)
                     {
                         throw new ArgumentException("Не получилось вычислить вырожение");
                     }

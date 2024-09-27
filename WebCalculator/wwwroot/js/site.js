@@ -1,4 +1,7 @@
-﻿
+﻿$(document).ready(function () {
+    ShowView();
+});
+
 function ShowView() {
     $.ajax({
         url: 'listOperation',
@@ -10,7 +13,7 @@ function ShowView() {
                 OperatorStatusSwitch($(this).data('operator'));
             });
         },
-        error: function (xhr, status, error) {
+        error: function (error) {
             console.error('Error:', error);
         }
     });
@@ -24,7 +27,7 @@ function OperatorStatusSwitch(operator) {
         success: function (response) {
             ShowView();
         },
-        error: function (xhr, status, error) {
+        error: function (error) {
             console.error('Error:', error);
         }
 

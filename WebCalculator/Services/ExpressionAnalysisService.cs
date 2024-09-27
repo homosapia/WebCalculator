@@ -65,6 +65,21 @@ namespace WebCalculator.Services
                 {
                     output.Add(token);
                 }
+                else if (token == "(")
+                {
+                    operators.Push(token);
+                }
+                else if (token == ")")
+                {
+                    while (operators.Count > 0 && operators.Peek() != "(")
+                    {
+                        output.Add(operators.Pop());
+                    }
+                    if (operators.Count > 0 && operators.Peek() == "(")
+                    {
+                        operators.Pop();
+                    }
+                }
                 else if (_operator.OperatorSupported(token))
                 {
                     while (operators.Count > 0 && _operator.GetPrecedence(operators.Peek()) >= _operator.GetPrecedence(token))
