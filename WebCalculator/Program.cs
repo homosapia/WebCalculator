@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IExpressionAnalysisService, ExpressionAnalysisService>();
 builder.Services.AddTransient<IExpressionFactory, ExpressionFactory>();
-builder.Services.AddSingleton<IOperator, ListOperators>();
+builder.Services.AddSingleton<IOperator, OperationsInteractionService>();
 
 var app = builder.Build();
 

@@ -13,7 +13,7 @@ namespace UnitTest.Tests
         public void CheckingExpressionComponents()
         {
             // Arrange
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             var expressionService = new ExpressionAnalysisService(ioperator);
             string expression = "-5+3-9*2";
             // Act
@@ -27,7 +27,7 @@ namespace UnitTest.Tests
         public void CheckingMethodConstructingSequence() 
         {
             // Arrange
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
             List<string> componentsExpression = new List<string>() { "-5", "+", "3", "-", "9", "*", "2" };
             // Act

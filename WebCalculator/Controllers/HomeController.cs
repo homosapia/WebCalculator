@@ -25,8 +25,8 @@ namespace WebCalculator.Controllers
         [HttpPost]
         public IActionResult CalculateExpression(IndexModel model)
         {
-            if (!model.IsValid())
-                return Response(model, "Строка пуста или содержит недопустимые символы.");
+            //if (!model.IsValid())
+            //    return Response(model, "Строка пуста или содержит недопустимые символы.");
 
             model.Expression = model.Expression.SanitizeInput();
 

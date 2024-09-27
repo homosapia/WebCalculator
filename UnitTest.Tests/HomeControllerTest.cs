@@ -14,7 +14,7 @@ namespace UnitTest.Tests
         public void TestingExpressionValidation()
         {
             // Arrange
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
             IExpressionFactory factory = new ExpressionFactory(ioperator);
             HomeController homeController = new HomeController(expressionService, factory);
@@ -35,7 +35,7 @@ namespace UnitTest.Tests
         public void СheckForMultipleOperators()
         {
             // Arrange
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
             IExpressionFactory factory = new ExpressionFactory(ioperator);
             HomeController homeController = new HomeController(expressionService, factory);
@@ -56,7 +56,7 @@ namespace UnitTest.Tests
         public void ExpressionEvaluation()
         {
             // Arrange
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
             IExpressionFactory factory = new ExpressionFactory(ioperator);
             HomeController homeController = new HomeController(expressionService, factory);

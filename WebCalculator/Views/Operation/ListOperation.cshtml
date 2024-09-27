@@ -1,0 +1,10 @@
+﻿@model List<Operation>
+
+<div>
+    @foreach (Operation operation in Model)
+    {
+        <button class="operator" style="background-color: @operation.Сolor.ToString();" data-operator="@operation.OpetationType">
+            @operation.OpetationType
+        </button>
+    }
+</div>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WebCalculator.Expressions;
 using WebCalculator.Interfaces;
 using WebCalculator.Models;
+using WebCalculator.Services;
 using Xunit;
 
 namespace UnitTest.Tests
@@ -18,20 +19,28 @@ namespace UnitTest.Tests
         public void СheckingСorrectnessСreationExpression()
         {
             // Arrange
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             IExpression number1 = new NumberExpression(4);
             IExpression number2 = new NumberExpression(2);
             // Act
-            IExpression expression = ioperator.GetExpression("+", [number1, number2]);
+            List<double> answer = new List<double>();
+            answer.Add(ioperator.GetExpression("+", [number1, number2]).Сalculate());
+            answer.Add(ioperator.GetExpression("-", [number1, number2]).Сalculate());
+            answer.Add(ioperator.GetExpression("*", [number1, number2]).Сalculate());
+            answer.Add(ioperator.GetExpression("/", [number1, number2]).Сalculate());
+            answer.Add(ioperator.GetExpression("^", [number1, number2]).Сalculate());
             //Assert
-            Assert.Equal(6, expression.Сalculate());
+
+            List<double> correctAnswers = new List<double>() { 6, 2, 8, 2, 16 };
+
+            Assert.All(answer, item => Assert.Contains(item, correctAnswers));
         }
 
         [Fact]
         public void CheckForUnsupportedExpression()
         {
             // Arrange
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             IExpression number1 = new NumberExpression(4);
             IExpression number2 = new NumberExpression(2);
             try

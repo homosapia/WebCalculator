@@ -19,7 +19,7 @@ namespace UnitTest.Tests
         {
             // Arrange
             string expression = "-5+3-9*2";
-            IOperator ioperator = new ListOperators();
+            IOperator ioperator = new OperationsInteractionService();
             IExpressionAnalysisService expressionService = new ExpressionAnalysisService(ioperator);
             IExpressionFactory factory = new ExpressionFactory(ioperator);
             List<string> components = expressionService.GetComponentsExpressions(expression);
