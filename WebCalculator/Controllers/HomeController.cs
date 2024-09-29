@@ -1,18 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 using WebCalculator.Extensions;
 using WebCalculator.Interfaces;
 using WebCalculator.Models;
 
 namespace WebCalculator.Controllers
 {
+    [Route("/")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IExpressionAnalysisService _expressionAnalysisService;
         private readonly IExpressionFactory _expressionFactory;
-        public HomeController(ILogger<HomeController> logger, IExpressionAnalysisService expressionAnalysisService, IExpressionFactory expressionFactory)
+
+        public HomeController(IExpressionAnalysisService expressionAnalysisService, IExpressionFactory expressionFactory)
         {
-            _logger = logger;
             _expressionAnalysisService = expressionAnalysisService;
             _expressionFactory = expressionFactory;
         }
@@ -27,8 +28,8 @@ namespace WebCalculator.Controllers
         [HttpPost]
         public IActionResult CalculateExpression(IndexModel model)
         {
-            if (!model.IsValid())
-                return Response(model, "Строка пуста или содержит недопустимые символы.");
+            if(!model.IsValid())
+                return Response(model, "Выражение пустое или не имеет смысла");
 
             model.Expression = model.Expression.SanitizeInput();
 
@@ -42,7 +43,6 @@ namespace WebCalculator.Controllers
             catch(ArgumentException ex)
             {
                 return Response(model, ex.Message);
-
             }
             catch (Exception ex) 
             {

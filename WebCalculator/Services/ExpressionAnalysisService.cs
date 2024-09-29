@@ -9,6 +9,12 @@ namespace WebCalculator.Services
 {
     public class ExpressionAnalysisService : IExpressionAnalysisService
     {
+        private IOperator _operator;
+        public ExpressionAnalysisService(IOperator @operator)
+        {
+            _operator = @operator;
+        }
+
 
         public List<string> GetComponentsExpressions(string expression)
         {
@@ -30,7 +36,7 @@ namespace WebCalculator.Services
                         tokens.Add(new string(number.ToArray()));
                         number.Clear();
                     }
-                    else if (number.Count == 0 && GetPrecedence(token.ToString()) == 1)
+                    else if (number.Count == 0 && _operator.GetPrecedence(token.ToString()) == 1)
                     {
                         number.Add(token);
                         continue;
@@ -59,9 +65,24 @@ namespace WebCalculator.Services
                 {
                     output.Add(token);
                 }
-                else if (token == "+" || token == "-" || token == "*" || token == "/")
+                else if (token == "(")
                 {
-                    while (operators.Count > 0 && GetPrecedence(operators.Peek()) >= GetPrecedence(token))
+                    operators.Push(token);
+                }
+                else if (token == ")")
+                {
+                    while (operators.Count > 0 && operators.Peek() != "(")
+                    {
+                        output.Add(operators.Pop());
+                    }
+                    if (operators.Count > 0 && operators.Peek() == "(")
+                    {
+                        operators.Pop();
+                    }
+                }
+                else if (_operator.OperatorSupported(token))
+                {
+                    while (operators.Count > 0 && _operator.GetPrecedence(operators.Peek()) >= _operator.GetPrecedence(token))
                     {
                         output.Add(operators.Pop());
                     }
@@ -75,21 +96,6 @@ namespace WebCalculator.Services
             }
 
             return output;
-        }
-
-        private int GetPrecedence(string op)
-        {
-            switch (op)
-            {
-                case "+":
-                case "-":
-                    return 1;
-                case "*":
-                case "/":
-                    return 2;
-                default:
-                    return 0;
-            }
         }
     }
 }

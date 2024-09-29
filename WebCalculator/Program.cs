@@ -1,5 +1,6 @@
 using WebCalculator.Factories;
 using WebCalculator.Interfaces;
+using WebCalculator.Models;
 using WebCalculator.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IExpressionAnalysisService, ExpressionAnalysisService>();
 builder.Services.AddTransient<IExpressionFactory, ExpressionFactory>();
+builder.Services.AddSingleton<IOperator, OperationsInteractionService>();
 
 var app = builder.Build();
 
@@ -17,9 +19,7 @@ app.UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllers();
 });
 
 app.Run();

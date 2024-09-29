@@ -1,11 +1,11 @@
 ﻿using System.Text.RegularExpressions;
+using WebCalculator.Models.Views;
 
 namespace WebCalculator.Models
 {
     public class IndexModel
     {
         public string Expression { get; set; } = string.Empty;
-
         public string Resultado { get; set; }
 
         public bool IsValid()
@@ -15,8 +15,7 @@ namespace WebCalculator.Models
                 return false;
             }
 
-            // Регулярное выражение для проверки строки
-            string pattern = @"^[0-9\.,+\-*/]+$";
+            string pattern = @"^[\d\^\+\-\*\/\(\)\.]+$";
             Regex regex = new Regex(pattern);
 
             if (regex.IsMatch(Expression))
