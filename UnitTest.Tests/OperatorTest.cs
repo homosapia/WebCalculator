@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WebCalculator.Expressions;
 using WebCalculator.Interfaces;
 using WebCalculator.Models;
+using WebCalculator.Models.Views;
 using WebCalculator.Services;
 using Xunit;
 
@@ -37,21 +38,34 @@ namespace UnitTest.Tests
         }
 
         [Fact]
+        public void CheckStatusChange()
+        {
+            // Arrange
+            IOperator ioperator = new OperationsInteractionService();
+            ioperator.ToggleStatus("+");
+            // Act
+            var list = ioperator.ListOperations.First(x => x.OpetationType == "+");
+            //Assert
+            Assert.Equal(ColorOperation.darkgray, list.Сolor);
+        }
+
+        [Fact]
         public void CheckForUnsupportedExpression()
         {
             // Arrange
             IOperator ioperator = new OperationsInteractionService();
+            ioperator.ToggleStatus("+");
             IExpression number1 = new NumberExpression(4);
             IExpression number2 = new NumberExpression(2);
             try
             {
                 // Act
-                ioperator.GetExpression("df", [number1, number2]);
+                ioperator.GetExpression("+", [number1, number2]);
             }
             catch (Exception ex)
             {
                 //Assert
-                Assert.Contains("Оператор df не поддерживается.", ex.Message);
+                Assert.Contains("Оператор + выключен", ex.Message);
             }
         }
     }

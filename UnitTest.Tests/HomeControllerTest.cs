@@ -28,7 +28,7 @@ namespace UnitTest.Tests
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
             var modelResult = Assert.IsType<IndexModel>(viewResult.Model);
-            Assert.Contains("Строка пуста или содержит недопустимые символы.", modelResult.Resultado);
+            Assert.Contains("Выражение пустое или не имеет смысла", modelResult.Resultado);
         }
 
         [Fact]
