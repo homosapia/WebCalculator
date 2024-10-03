@@ -6,12 +6,12 @@
         darkgray = 2,
     }
 
-    public class Operation
+    public class OperationModel
     {
         public readonly string OpetationType;
         public ColorOperation Сolor { get; private set; }
 
-        public Operation(string opetationType, ColorOperation status) 
+        public OperationModel(string opetationType, ColorOperation status) 
         {
             OpetationType = opetationType;
             Сolor = status;
@@ -22,9 +22,9 @@
             Сolor = status;
         }
 
-        public bool IsNotActively()
+        public bool IsActively()
         {
-            return Сolor != ColorOperation.cornflowerblue;
+            return Сolor == ColorOperation.cornflowerblue;
         }
     }
 }

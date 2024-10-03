@@ -1,13 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using WebCalculator.Expressions;
+﻿using WebCalculator.Expressions;
 using WebCalculator.Interfaces;
-using WebCalculator.Models;
 using WebCalculator.Models.Views;
 using WebCalculator.Services;
 using Xunit;
@@ -44,7 +36,7 @@ namespace UnitTest.Tests
             IOperator ioperator = new OperationsInteractionService();
             ioperator.ToggleStatus("+");
             // Act
-            var list = ioperator.ListOperations.First(x => x.OpetationType == "+");
+            var list = ioperator.GetModelsToView().First(x => x.OpetationType == "+");
             //Assert
             Assert.Equal(ColorOperation.darkgray, list.Сolor);
         }

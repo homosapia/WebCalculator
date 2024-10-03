@@ -1,7 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using WebCalculator.Models.Views;
 
-namespace WebCalculator.Models
+namespace WebCalculator.Models.Views
 {
     public class IndexModel
     {
