@@ -37,7 +37,7 @@ namespace WebCalculator.Services
                 }
             }
 
-            return stack.Count <= 1;
+            return stack.Count > 1;
         }
 
         public IExpression GetExpression(string type, object[] arguments)

@@ -23,7 +23,7 @@ function OperatorStatusSwitch(operator) {
     $.ajax({
         url: 'switch',
         method: 'GET',
-        data: { operator: operator },
+        data: { operatorType: operator },
         success: function (response) {
             ShowView();
         },
