@@ -1,7 +1,7 @@
-﻿@model List<Operation>
+﻿@model List<OperationModel>
 
 <div>
-    @foreach (Operation operation in Model)
+    @foreach (OperationModel operation in Model)
     {
         <button class="operator" style="background-color: @operation.Сolor.ToString();" data-operator="@operation.OpetationType">
             @operation.OpetationType

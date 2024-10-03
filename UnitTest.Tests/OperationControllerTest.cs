@@ -27,8 +27,8 @@ namespace UnitTest.Tests
 
             //Assert
             var viewResult = Assert.IsType<PartialViewResult>(result);
-            var modelResult = Assert.IsType<List<Operation>>(viewResult.Model);
-            Assert.Equal(ioperator.ListOperations, modelResult);
+            var modelResult = Assert.IsType<List<OperationModel>>(viewResult.Model);
+            Assert.Equal(ioperator.GetModelsToView(), modelResult);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace UnitTest.Tests
             operationController.СhangeStatus("+");
 
             //Assert
-            var @operator = ioperator.ListOperations.Single(x => x.OpetationType == "+");
+            var @operator = ioperator.GetModelsToView().Single(x => x.OpetationType == "+");
             Assert.Equal(ColorOperation.darkgray, @operator.Сolor);
         }
     }

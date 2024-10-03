@@ -15,17 +15,17 @@ namespace WebCalculator.Controllers
         [Route("listOperation")]
         public IActionResult GetListOperation()
         {
-            return PartialView("ListOperation", _operator.ListOperations);
+            return PartialView("ListOperation", _operator.GetModelsToView());
         }
 
         [HttpGet]
         [Route("switch")]
-        public void СhangeStatus(string @operator)
+        public void СhangeStatus(string operatorType)
         {
-            if (string.IsNullOrEmpty(@operator))
+            if (string.IsNullOrEmpty(operatorType))
                 return;
 
-            _operator.ToggleStatus(@operator);
+            _operator.ToggleStatus(operatorType);
         }
     }
 }

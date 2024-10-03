@@ -3,6 +3,7 @@ using WebCalculator.Controllers;
 using WebCalculator.Factories;
 using WebCalculator.Interfaces;
 using WebCalculator.Models;
+using WebCalculator.Models.Views;
 using WebCalculator.Services;
 using Xunit;
 

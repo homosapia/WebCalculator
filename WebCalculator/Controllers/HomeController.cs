@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 using WebCalculator.Extensions;
 using WebCalculator.Interfaces;
-using WebCalculator.Models;
+using WebCalculator.Models.Views;
 
 namespace WebCalculator.Controllers
 {

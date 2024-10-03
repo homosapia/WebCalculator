@@ -18,7 +18,7 @@ namespace WebCalculator.Services
 
         public List<string> GetComponentsExpressions(string expression)
         {
-            if (Regex.IsMatch(expression, @"[+\-*/]{2,}"))
+            if (_operator.СheckForDuplicates(expression))
                 throw new ArgumentException("Несколько операторов подряд не допускаются.");
 
             List<string> tokens = new List<string>();
